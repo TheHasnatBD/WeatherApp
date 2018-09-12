@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="instructor_name">Bonny Ahmad</string>
+    <string name="dev_name">Abdullah Al-Hasnat</string>
+
+    <string name="tab1">Current</string>
+    <string name="tab2">Forecast</string>
+
+    <string name="settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>
