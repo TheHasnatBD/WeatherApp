@@ -6,6 +6,12 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import bd.com.infobox.weather.Utils.TabPagerAdapter;
 
@@ -14,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TabPagerAdapter tabPagerAdapter;
+
+    public final static String WEATHER_BASE_URL = "http://api.openweathermap.org/data/2.5/";
+    public final static String WEATHER_IMAGE_BASE_URL = "https://openweathermap.org/img/w/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         tabPagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(tabPagerAdapter);
-
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -49,5 +57,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     } // ending onCreate
+
+
 
 }
