@@ -1,4 +1,4 @@
-# *Weather*
+# *Weather App*
 > _professional android weather app, web api_
 
 ### App features for learner/developer-

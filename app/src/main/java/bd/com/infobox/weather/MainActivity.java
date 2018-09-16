@@ -1,19 +1,22 @@
 package bd.com.infobox.weather;
 
-import android.content.res.ColorStateList;
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Location;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 
-import bd.com.infobox.weather.Utils.TabPagerAdapter;
+import bd.com.infobox.weather.Adapter.TabPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,19 +24,22 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private TabPagerAdapter tabPagerAdapter;
 
-    public final static String WEATHER_BASE_URL = "http://api.openweathermap.org/data/2.5/";
-    public final static String WEATHER_IMAGE_BASE_URL = "https://openweathermap.org/img/w/";
+    private FusedLocationProviderClient locationProviderClient;
+    public Double latitude, longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        locationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewPager);
 
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab1));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab2));
+        tabLayout.setSelectedTabIndicatorColor(Color.DKGRAY);
 
         tabPagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(tabPagerAdapter);
@@ -56,8 +62,47 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        getDeviceLastLocation();
+        Log.e("onCreate: ", "TEST");
+
+
     } // ending onCreate
 
+    private boolean checkLocationPermission() {
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 111);
 
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 111){
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                getDeviceLastLocation();
+            }
+        }
+    }
+
+    private void getDeviceLastLocation() {
+        if (checkLocationPermission()) {
+            locationProviderClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    if (location != null){
+                        double latitude = location.getLatitude();
+                        double longitude = location.getLongitude();
+
+                        Log.e("getDeviceLastLocation: ", String.valueOf(latitude));
+                        Log.e("getDeviceLastLocation: ", String.valueOf(longitude));
+                    }
+
+                }
+            });
+        }
+    }
 }

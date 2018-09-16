@@ -9,6 +9,21 @@
 
     <string name="settings">Settings</string>
 
+    <!-- Conflicting with Dhaka in Free API -->
+    <string name="bangshal">Bangshal</string>
+    <string name="dhaka">Dhaka</string>
 
+    <!-- CurrentWeatherFragment all strings -->
+    <string name="today">Today</string>
+    <string name="sunrise">Sunrise:</string>
+    <string name="senset">Sunset:</string>
+    <string name="humidity">Humidity</string>
+    <string name="pressure">Pressure</string>
+    <string name="max_temp">Max Temp</string>
+    <string name="min_temp">Min Temp</string>
+    <string name="clouds">Clouds</string>
+    <string name="winds">Winds</string>
+
+    <!-- ForecastWeatherFragment all strings -->
 
 </resources>
