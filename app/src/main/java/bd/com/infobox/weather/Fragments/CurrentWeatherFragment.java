@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso;
 import bd.com.infobox.weather.Constants.Constant;
 import bd.com.infobox.weather.Model.CurrentWeatherPick.CurrentWeatherResponse;
 import bd.com.infobox.weather.R;
-import bd.com.infobox.weather.Services.CurrentWeatherPick.CurrentWeatherServiceAPI;
+import bd.com.infobox.weather.Services.WeatherServiceAPI;
 import bd.com.infobox.weather.Services.RetrofitClient;
 import bd.com.infobox.weather.Utils.TimeAndDateConverter;
 import retrofit2.Call;
@@ -35,11 +35,9 @@ public class CurrentWeatherFragment extends Fragment {
                      cloudsTV, windTV;
     private ImageView temp_icon;
     private Context context;
-    private static String apiKey;
     private String weather_url;
-    //CurrentWeatherServiceAPI weatherServiceAPI;
+    //WeatherServiceAPI weatherServiceAPI;
 
-    private FusedLocationProviderClient locationProviderClient;
     //private Double latitude, longitude;
 
 
@@ -54,8 +52,6 @@ public class CurrentWeatherFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_current_weather, container, false);
 
-        locationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
-
         temp = view.findViewById(R.id.tempTV);
         city = view.findViewById(R.id.cityTV);
         date = view.findViewById(R.id.dateTV);
@@ -63,7 +59,6 @@ public class CurrentWeatherFragment extends Fragment {
         temp_icon = view.findViewById(R.id.weatherImage);
         sunrise = view.findViewById(R.id.sunriseTV);
         sunset = view.findViewById(R.id.sunsetTV);
-
         humidityTV = view.findViewById(R.id.humidityTV);
         pressureTV = view.findViewById(R.id.pressureTV);
         cloudsTV = view.findViewById(R.id.cloudsTV);
@@ -72,17 +67,12 @@ public class CurrentWeatherFragment extends Fragment {
         minTempTV = view.findViewById(R.id.tempMinTV);
 
 
-
-
-        CurrentWeatherServiceAPI weatherServiceAPI = RetrofitClient.getClient(Constant.baseUrl.WEATHER_BASE_URL).create(CurrentWeatherServiceAPI.class);
-        apiKey = getString(R.string.weather_api_key);
+        WeatherServiceAPI weatherServiceAPI = RetrofitClient.getClient(Constant.baseUrl.WEATHER_BASE_URL).create(WeatherServiceAPI.class);
 
         double latitude = getArguments().getDouble("lat");
         double longitude = getArguments().getDouble("lng");
 
-        weather_url = String.format("weather?lat=%f&lon=%f&units=metric&appid=%s", latitude, longitude, apiKey);
-
-
+        weather_url = String.format("weather?lat=%f&lon=%f&units=metric&appid=%s", latitude, longitude, Constant.apiKeys.WEATHER_API);
 
         //String weather_url = String.format("weather?q=dhaka&units=metric&appid=%s", apiKey);
         weatherServiceAPI.getCurrentWeatherResponse(weather_url)
@@ -167,7 +157,7 @@ public class CurrentWeatherFragment extends Fragment {
                 });
 
         return view;
-    }
+    } // ending onCreateView
 
 
     /** ,gdfgfdg **/

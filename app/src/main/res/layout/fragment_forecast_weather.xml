@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/l_gray"
     tools:context=".Fragments.ForecastWeatherFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/weatherListRV"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="FORECAST WEATHER"
-        android:gravity="center" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+    </android.support.v7.widget.RecyclerView>
+
+
+</LinearLayout>

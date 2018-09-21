@@ -2,7 +2,7 @@
     <string name="app_name">Weather</string>
     <string name="instructor_name">Bonny Ahmad</string>
     <string name="dev_name">Abdullah Al-Hasnat</string>
-    <string name="weather_api_key"></string>
+    <string name="weather_api_key">9b1861904f8426be4f0e37b7eb8dfd4c</string>
 
     <string name="tab1">Current</string>
     <string name="tab2">Forecast</string>

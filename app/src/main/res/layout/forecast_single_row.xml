@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="4dp"
+    app:cardElevation="3dp"
+    android:layout_marginBottom="5dp"
+    app:cardBackgroundColor="@color/l_gray"
+    android:foreground="?selectableItemBackground"
+    >
+
+    <LinearLayout
+        android:weightSum="2"
+        android:id="@+id/linLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        >
+
+
+        <LinearLayout
+            android:id="@+id/linLay1"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            >
+            <TextView
+                android:id="@+id/dateNameFTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Friday"
+                android:textSize="16sp"
+                android:textColor="#000"
+                />
+            <TextView
+                android:id="@+id/dateFTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="27 - 9 - 2018"
+                android:textStyle="italic"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="5dp"
+                >
+                <ImageView
+                    android:id="@+id/weatherIconFTV"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_wind"
+                    android:layout_marginTop="05dp"
+                    android:layout_marginEnd="10dp"
+                    />
+                <TextView
+                    android:id="@+id/tempFTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="3dp"
+                    android:text="29"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tempDescriptionFTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="sunny"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:id="@+id/linLay2"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            >
+            <TextView
+                android:id="@+id/humidityFTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_humidity"
+                android:textStyle="normal"
+                android:text=" 29 %"
+                android:gravity="left"
+                android:padding="4dp"
+                />
+            <TextView
+                android:id="@+id/cloudFTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_cloud"
+                android:textStyle="normal"
+                android:gravity="left"
+                android:text=" 29 %"
+                android:padding="4dp"
+
+                />
+
+            <TextView
+                android:id="@+id/tempMaxFTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_max_temp"
+                android:textStyle="normal"
+                android:gravity="left"
+                android:text=" 29 "
+                android:padding="4dp"
+
+                />
+
+            <TextView
+                android:id="@+id/tempMinFTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_min_temp"
+                android:textStyle="normal"
+                android:gravity="left"
+                android:text=" 29 "
+                android:padding="4dp"
+
+                />
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>
