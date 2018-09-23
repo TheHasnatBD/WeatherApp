@@ -5,7 +5,7 @@
     <string name="weather_api_key"></string>
 
     <string name="tab1">Current</string>
-    <string name="tab2">Forecast</string>
+    <string name="tab2">5 DAYS Forecast</string>
 
     <string name="settings">Settings</string>
 
@@ -23,6 +23,9 @@
     <string name="min_temp">Min Temp</string>
     <string name="clouds">Clouds</string>
     <string name="winds">Winds</string>
+    <string name="unit_c">℃</string>
+    <string name="unit_f">℉</string>
+    <string name="degree">Degree</string>
 
     <!-- ForecastWeatherFragment all strings -->
 

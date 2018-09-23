@@ -7,16 +7,32 @@
     android:layout_gravity="center_horizontal"
     tools:context=".Fragments.CurrentWeatherFragment">
 
+    <Switch
+        android:id="@+id/unit_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:checked="false"
+        android:showText="true"
+        android:textOff="@string/unit_f"
+        android:textOn="@string/unit_c"
+        android:scaleX="1.3"
+        android:scaleY="1.3"
+        android:padding="10dp"
+        android:layout_margin="10dp"/>
     <ImageView
         android:id="@+id/weatherImage"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_below="@id/unit_switch"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp" />
 
     <TextView
         android:id="@+id/tempTV"
+        android:layout_below="@+id/weatherImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -90,7 +106,7 @@
     <LinearLayout
         android:id="@+id/linLay2"
         android:orientation="horizontal"
-        android:layout_below="@id/linLay1"
+        android:layout_below="@id/dateTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="3"

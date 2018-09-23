@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -30,6 +31,7 @@ import retrofit2.Response;
 public class ForecastWeatherFragment extends Fragment {
 
     private RecyclerView weatherListRV;
+    private TextView cityFTV;
     private ForecastRVAdapter adapter;
     private String forecast_weather_url;
 
@@ -47,6 +49,8 @@ public class ForecastWeatherFragment extends Fragment {
 
 
         weatherListRV = view.findViewById(R.id.weatherListRV);
+        cityFTV = view.findViewById(R.id.cityFTV);
+
 
 
         WeatherServiceAPI weatherServiceAPI = RetrofitClient.getClient(Constant.baseUrl.WEATHER_BASE_URL).create(WeatherServiceAPI.class);
@@ -63,10 +67,21 @@ public class ForecastWeatherFragment extends Fragment {
 
                             List<bd.com.infobox.weather.Model.ForecastWeatherPick.List> weatherLists = forecastWeatherResponse.getList();
 
+                            String userCity = forecastWeatherResponse.getCity().getName()+ ", ";
+                            String userCountry = forecastWeatherResponse.getCity().getCountry();
+                            if (userCity.contains(getString(R.string.bangshal))){
+                                String bangshal_country = getString(R.string.dhaka) + ", " + userCountry;
+                                cityFTV.setText(bangshal_country);
+                            } else {
+                                String city_country = userCity + userCountry;
+                                cityFTV.setText(city_country);
+                            }
+
                             if (adapter == null){
                                 adapter = new ForecastRVAdapter(weatherLists, getContext());
 
                                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                                linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                                 weatherListRV.setLayoutManager(linearLayoutManager);
                                 weatherListRV.setAdapter(adapter);
                             } else {

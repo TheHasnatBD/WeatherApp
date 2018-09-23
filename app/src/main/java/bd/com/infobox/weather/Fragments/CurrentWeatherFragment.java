@@ -7,7 +7,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,13 +35,14 @@ public class CurrentWeatherFragment extends Fragment {
     private TextView temp, city, temp_des, date, sunrise, sunset,
                      humidityTV, pressureTV, minTempTV, maxTempTV,
                      cloudsTV, windTV;
+    private Switch unit_switch;
     private ImageView temp_icon;
     private Context context;
     private String weather_url;
+    private String switch_unit_status = "metric";
     //WeatherServiceAPI weatherServiceAPI;
 
     //private Double latitude, longitude;
-
 
 
     public CurrentWeatherFragment() {
@@ -65,14 +68,37 @@ public class CurrentWeatherFragment extends Fragment {
         windTV = view.findViewById(R.id.windsTV);
         maxTempTV = view.findViewById(R.id.tempMaxTV);
         minTempTV = view.findViewById(R.id.tempMinTV);
+        unit_switch = view.findViewById(R.id.unit_switch);
+        unit_switch.setChecked(false);
+        unit_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    switch_unit_status = "imperial";
+                    getWeatherByUnit(switch_unit_status);
+               } else {
+                    switch_unit_status = "metric";
+                    getWeatherByUnit(switch_unit_status);
+                }
+
+            }
+        });
+        getWeatherByUnit(switch_unit_status);
 
 
+
+        return view;
+    } // ending onCreateView
+
+
+
+    private void getWeatherByUnit(String switch_unit_status) {
         WeatherServiceAPI weatherServiceAPI = RetrofitClient.getClient(Constant.baseUrl.WEATHER_BASE_URL).create(WeatherServiceAPI.class);
 
         double latitude = getArguments().getDouble("lat");
         double longitude = getArguments().getDouble("lng");
 
-        weather_url = String.format("weather?lat=%f&lon=%f&units=metric&appid=%s", latitude, longitude, Constant.apiKeys.WEATHER_API);
+        weather_url = String.format("weather?lat=%f&lon=%f&units=%s&appid=%s", latitude, longitude, switch_unit_status, Constant.apiKeys.WEATHER_API);
 
         //String weather_url = String.format("weather?q=dhaka&units=metric&appid=%s", apiKey);
         weatherServiceAPI.getCurrentWeatherResponse(weather_url)
@@ -89,9 +115,15 @@ public class CurrentWeatherFragment extends Fragment {
                                     .load(iconUrl)
                                     .into(temp_icon);
 
-                            // weather in degree celsius
-                            int tempInC = currentWeatherResponse.getMain().getTemp().intValue();
-                            temp.setText(tempInC+" \u2103");
+                            // weather in celsius and Fahrenheit
+                            int Temp = currentWeatherResponse.getMain().getTemp().intValue();
+                            if (unit_switch.isChecked()){
+                                String tempInF = Temp + " " + getString(R.string.unit_f);
+                                temp.setText(tempInF);
+                            } else {
+                                String tempInC = Temp + " " + getString(R.string.unit_c);
+                                temp.setText(tempInC);
+                            }
 
                             // weather description
                             temp_des.setText(currentWeatherResponse.getWeather().get(0).getDescription());
@@ -136,17 +168,15 @@ public class CurrentWeatherFragment extends Fragment {
                             windTV.setText(winds);
 
                             //MAX TEMP
-                            String maxTemp = getString(R.string.max_temp) + "\n" +currentWeatherResponse.getMain().getTempMax().intValue() + " \u2103";
+                            String maxTemp = getString(R.string.max_temp) + "\n" +currentWeatherResponse.getMain().getTempMax().intValue();
                             maxTempTV.setText(maxTemp);
 
                             //MIN TEMP
-                            String minTemp = getString(R.string.min_temp) + "\n" +currentWeatherResponse.getMain().getTempMin().intValue() + " \u2103";
+                            String minTemp = getString(R.string.min_temp) + "\n" +currentWeatherResponse.getMain().getTempMin().intValue();
                             minTempTV.setText(minTemp);
 
 
-
-
-                            Toast.makeText(getContext(), currentWeatherResponse.getCoord().getLat()+ " << Lat || Lon >> "+currentWeatherResponse.getCoord().getLon(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getContext(), currentWeatherResponse.getCoord().getLat()+ " << Lat || Lon >> "+currentWeatherResponse.getCoord().getLon(), Toast.LENGTH_SHORT).show();
 
 
                         }
@@ -156,8 +186,7 @@ public class CurrentWeatherFragment extends Fragment {
                     }
                 });
 
-        return view;
-    } // ending onCreateView
+    }
 
 
     /** ,gdfgfdg **/
