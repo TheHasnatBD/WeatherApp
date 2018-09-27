@@ -5,9 +5,13 @@
 * Using => Tab layout, Fragments, RecyclerView, Retrofit2, Gson, Picasso
 * Using OpenWeatherMap API 
 * Choose Celsius => fahrenheit  with SharedPreference
-* Retrive Current weather data and 16 day / daily forecast data using API
+* Retrive Current weather data and 5 day / 3 hour forecast data using API
 * Working with Current Location using GPS / Celluar Network
 * Searching City to know weather
 * Notification with UV alert and more
 
+#### Some Screenshots of this app
+ Current Weather                            | 5 Days Weather                              		                    
+:------------------------------------------:|:-----------------------------------------:
+ <img src="files/current.png" width="200">  | <img src="files/forecast.png" width="200">  
 
