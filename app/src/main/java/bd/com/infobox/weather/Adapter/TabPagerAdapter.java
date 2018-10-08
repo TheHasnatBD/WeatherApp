@@ -1,7 +1,6 @@
 package bd.com.infobox.weather.Adapter;
 
-import android.content.Intent;
-import android.location.Location;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,12 +9,12 @@ import android.support.v4.app.FragmentPagerAdapter;
 import bd.com.infobox.weather.Constants.Constant;
 import bd.com.infobox.weather.Fragments.CurrentWeatherFragment;
 import bd.com.infobox.weather.Fragments.ForecastWeatherFragment;
-import bd.com.infobox.weather.MainActivity;
 
 public class TabPagerAdapter extends FragmentPagerAdapter {
-
-    public TabPagerAdapter(FragmentManager fm) {
+    private Context context;
+    public TabPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
+        this.context = context;
     }
 
     @Override
@@ -43,7 +42,4 @@ public class TabPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return 2;
     }
-
-
-
 }

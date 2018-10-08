@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SearchActivity"
+    >
+    <include
+        layout="@layout/all_app_bar_layout"
+        android:id="@+id/search_appbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:layout_marginTop="50dp"
+                android:padding="10dp"
+                android:id="@+id/searchDetailsTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Please Type a City Name, Then Search"
+                android:fontFamily="sans-serif-smallcaps"
+                android:gravity="center_horizontal"
+                android:textSize="18sp"/>
+
+            <RelativeLayout
+                android:id="@+id/relLaySearch"
+                android:visibility="visible"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                >
+                <Switch
+                    android:id="@+id/unit_switchSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:checked="false"
+                    android:showText="true"
+                    android:textOff="@string/unit_f"
+                    android:textOn="@string/unit_c"
+                    android:scaleX="1.3"
+                    android:scaleY="1.3"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"/>
+                <ImageView
+                    android:id="@+id/weatherImageSearch"
+                    android:layout_below="@id/unit_switchSearch"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    />
+
+                <TextView
+                    android:id="@+id/tempTVSearch"
+                    android:layout_below="@+id/weatherImageSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="40dp"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/descriptionWeatherSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tempTVSearch"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/cityTVSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:drawableStart="@drawable/ic_location_on_black_24dp"
+                    android:layout_below="@+id/descriptionWeatherSearch"
+                    android:text=""
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/dateTVSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/cityTVSearch"
+                    android:textSize="15sp"
+                    android:textStyle="normal"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/linLay1"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/dateTVSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="30dp"
+                    >
+                    <TextView
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        android:id="@+id/sunriseTVSearch"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textStyle="normal"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:gravity="start"
+                        android:layout_weight="1"
+                        android:id="@+id/sunsetTVSearch"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textStyle="normal"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+
+                <!--  -->
+                <LinearLayout
+                    android:id="@+id/linLay2"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/dateTVSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginLeft="40dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        >
+
+                        <TextView
+                            android:id="@+id/humidityTVSearch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableTop="@drawable/ic_humidity"
+                            android:textStyle="normal"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            />
+                        <TextView
+                            android:id="@+id/pressureTVSearch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableTop="@drawable/ic_pressure"
+                            android:textStyle="normal"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+                        <TextView
+                            android:id="@+id/cloudsTVSearch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableTop="@drawable/ic_cloud"
+                            android:textStyle="normal"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            />
+                        <TextView
+                            android:id="@+id/windsTVSearch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableTop="@drawable/ic_wind"
+                            android:textStyle="normal"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        >
+                        <TextView
+                            android:id="@+id/tempMaxTVSearch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableTop="@drawable/ic_max_temp"
+                            android:text=""
+                            android:textStyle="normal"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            />
+                        <TextView
+                            android:id="@+id/tempMinTVSearch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableTop="@drawable/ic_min_temp"
+                            android:text=""
+                            android:textStyle="normal"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_marginTop="40dp"
+                    android:layout_below="@id/linLay2"
+                    android:id="@+id/forecastTVSearch"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:text="5 Days / 3 Hour Forecast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"/>
+                <View
+                    android:layout_marginTop="3dp"
+                    android:layout_below="@id/forecastTVSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height=".8dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:background="@color/gray" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:padding="10dp"
+                    android:layout_below="@+id/forecastTVSearch"
+                    android:foregroundGravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:scrollbarStyle="outsideInset"
+                    android:id="@+id/weatherListSearch">
+                </android.support.v7.widget.RecyclerView>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>

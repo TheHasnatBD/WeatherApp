@@ -70,10 +70,10 @@ public class ForecastWeatherFragment extends Fragment {
                             String userCity = forecastWeatherResponse.getCity().getName()+ ", ";
                             String userCountry = forecastWeatherResponse.getCity().getCountry();
                             if (userCity.contains(getString(R.string.bangshal))){
-                                String bangshal_country = getString(R.string.dhaka) + ", " + userCountry;
+                                String bangshal_country = "Weather in " + getString(R.string.dhaka) + ", " + userCountry;
                                 cityFTV.setText(bangshal_country);
                             } else {
-                                String city_country = userCity + userCountry;
+                                String city_country = "Weather in " + userCity + userCountry;
                                 cityFTV.setText(city_country);
                             }
 

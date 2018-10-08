@@ -1,9 +1,15 @@
 package bd.com.infobox.weather.Fragments;
 
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +21,13 @@ import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.squareup.picasso.Picasso;
 
 import bd.com.infobox.weather.Constants.Constant;
+import bd.com.infobox.weather.MainActivity;
 import bd.com.infobox.weather.Model.CurrentWeatherPick.CurrentWeatherResponse;
 import bd.com.infobox.weather.R;
 import bd.com.infobox.weather.Services.WeatherServiceAPI;
@@ -30,7 +40,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CurrentWeatherFragment extends Fragment {
+public class CurrentWeatherFragment extends Fragment{
 
     private TextView temp, city, temp_des, date, sunrise, sunset,
                      humidityTV, pressureTV, minTempTV, maxTempTV,
@@ -40,10 +50,11 @@ public class CurrentWeatherFragment extends Fragment {
     private Context context;
     private String weather_url;
     private String switch_unit_status = "metric";
+    private FusedLocationProviderClient locationProviderClient;
+    private Location lastLocation;
     //WeatherServiceAPI weatherServiceAPI;
 
     //private Double latitude, longitude;
-
 
     public CurrentWeatherFragment() {
         // Required empty public constructor
@@ -54,6 +65,7 @@ public class CurrentWeatherFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_current_weather, container, false);
+        locationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
 
         temp = view.findViewById(R.id.tempTV);
         city = view.findViewById(R.id.cityTV);
@@ -80,19 +92,16 @@ public class CurrentWeatherFragment extends Fragment {
                     switch_unit_status = "metric";
                     getWeatherByUnit(switch_unit_status);
                 }
-
             }
         });
         getWeatherByUnit(switch_unit_status);
-
 
 
         return view;
     } // ending onCreateView
 
 
-
-    private void getWeatherByUnit(String switch_unit_status) {
+    private void getWeatherByUnit( String switch_unit_status) {
         WeatherServiceAPI weatherServiceAPI = RetrofitClient.getClient(Constant.baseUrl.WEATHER_BASE_URL).create(WeatherServiceAPI.class);
 
         double latitude = getArguments().getDouble("lat");
@@ -116,13 +125,21 @@ public class CurrentWeatherFragment extends Fragment {
                                     .into(temp_icon);
 
                             // weather in celsius and Fahrenheit
+                            // winds in sec and hour
                             int Temp = currentWeatherResponse.getMain().getTemp().intValue();
+                            String winds = getString(R.string.winds) + "\n" +currentWeatherResponse.getWind().getSpeed() ;
                             if (unit_switch.isChecked()){
                                 String tempInF = Temp + " " + getString(R.string.unit_f);
                                 temp.setText(tempInF);
+
+                                String windsKInF = winds + " m/h";
+                                windTV.setText(windsKInF);
                             } else {
                                 String tempInC = Temp + " " + getString(R.string.unit_c);
                                 temp.setText(tempInC);
+
+                                String windsMInF = winds + " m/s";
+                                windTV.setText(windsMInF);
                             }
 
                             // weather description
@@ -163,9 +180,6 @@ public class CurrentWeatherFragment extends Fragment {
                             String clouds = getString(R.string.clouds) + "\n" +currentWeatherResponse.getClouds().getAll() + " %";
                             cloudsTV.setText(clouds);
 
-                            // winds
-                            String winds = getString(R.string.winds) + "\n" +currentWeatherResponse.getWind().getSpeed() + " m/s";
-                            windTV.setText(winds);
 
                             //MAX TEMP
                             String maxTemp = getString(R.string.max_temp) + "\n" +currentWeatherResponse.getMain().getTempMax().intValue();
@@ -174,11 +188,6 @@ public class CurrentWeatherFragment extends Fragment {
                             //MIN TEMP
                             String minTemp = getString(R.string.min_temp) + "\n" +currentWeatherResponse.getMain().getTempMin().intValue();
                             minTempTV.setText(minTemp);
-
-
-                            //Toast.makeText(getContext(), currentWeatherResponse.getCoord().getLat()+ " << Lat || Lon >> "+currentWeatherResponse.getCoord().getLon(), Toast.LENGTH_SHORT).show();
-
-
                         }
                     }
                     @Override
@@ -187,9 +196,5 @@ public class CurrentWeatherFragment extends Fragment {
                 });
 
     }
-
-
-    /** ,gdfgfdg **/
-
 
 }

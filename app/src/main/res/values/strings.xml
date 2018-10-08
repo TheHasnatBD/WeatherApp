@@ -4,7 +4,7 @@
     <string name="dev_name">Abdullah Al-Hasnat</string>
     <string name="weather_api_key"></string>
 
-    <string name="tab1">Current</string>
+    <string name="tab1">Today</string>
     <string name="tab2">5 DAYS Forecast</string>
 
     <string name="settings">Settings</string>

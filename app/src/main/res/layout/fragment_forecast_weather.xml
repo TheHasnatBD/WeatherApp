@@ -4,32 +4,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@color/l_gray"
     tools:context=".Fragments.ForecastWeatherFragment">
 
     <TextView
-        android:textSize="17sp"
+        android:textSize="18sp"
         android:layout_marginTop="20dp"
         android:id="@+id/detailsFWtv"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="5 day / 3 hour forecast"/>
+
     <TextView
         android:id="@+id/cityFTV"
+        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="05dp"
         android:layout_centerHorizontal="true"
-        android:drawableStart="@drawable/ic_location_on_black_24dp"
         android:layout_below="@+id/detailsFWtv"
         android:text="Dhaka"
-        android:textSize="16sp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="17sp"
         android:textStyle="normal"
         android:textColor="@color/black"/>
 
 
     <android.support.v7.widget.RecyclerView
+        android:layout_margin="5dp"
         android:id="@+id/weatherListRV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
