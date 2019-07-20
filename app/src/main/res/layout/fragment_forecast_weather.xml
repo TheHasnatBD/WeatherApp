@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    tools:context=".Fragments.ForecastWeatherFragment">
+    tools:context=".view.ForecastWeatherFragment">
 
     <TextView
         android:textSize="18sp"
@@ -29,14 +29,14 @@
         android:textColor="@color/black"/>
 
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_margin="5dp"
         android:id="@+id/weatherListRV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
 
-    </android.support.v7.widget.RecyclerView>
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 </RelativeLayout>

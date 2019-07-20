@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SearchActivity"
+    tools:context=".view.SearchActivity"
     >
     <include
         layout="@layout/all_app_bar_layout"
@@ -259,7 +259,7 @@
                     android:layout_marginRight="40dp"
                     android:background="@color/gray" />
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:padding="10dp"
                     android:layout_below="@+id/forecastTVSearch"
                     android:foregroundGravity="center_horizontal"
@@ -270,7 +270,7 @@
                     android:layout_marginBottom="10dp"
                     android:scrollbarStyle="outsideInset"
                     android:id="@+id/weatherListSearch">
-                </android.support.v7.widget.RecyclerView>
+                </androidx.recyclerview.widget.RecyclerView>
 
             </RelativeLayout>
 
